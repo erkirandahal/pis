@@ -9,6 +9,8 @@ from .views import (
     EmployeeTypeListView,
     EmployeeTypeUpdateView,
     EmployeeTypeDeleteView,
+    SectionTypeCreateView,
+    SectionTypeListView,
 )
 from . import views
 
@@ -22,4 +24,6 @@ urlpatterns = [
     path('employeetype/list/', EmployeeTypeListView.as_view(), name='employeetype-list'),
     path('employeetype/update/<int:pk>', EmployeeTypeUpdateView.as_view(), name='employeetype-update'),
     path('employeetype/delete/<int:pk>', EmployeeTypeDeleteView.as_view(), name='employeetype-delete'),
+    path('sectiontype/create/', SectionTypeCreateView.as_view(), name='sectiontype-create'),
+    path('sectiontype/list/', SectionTypeListView.as_view(), name='sectiontype-list'),
 ]

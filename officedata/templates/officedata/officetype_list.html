@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-md-12">
+      <div class="d-flex justify-content-between">
+        <div><h6 class="text-center alert alert-info">पदहरुको विवरण</h6></div>
+        <div>
+            <a href="{% url 'officetype-create' %}" class="btn btn-info btn-bg">
+                  <i class="fas fa-plus"></i> नयाँ थप्ने
+            </a>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">क्र.स.</th>
+            <th scope="col">पद (नेपाली)</th>
+            <th scope="col">पद (अंग्रेजी)</th>
+            <th scope="col">एक्सन</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for officetype in officetype_list %}
+        <tr>
+            <th scope="row">{{ officetype.id }}</th>
+            <td><a href="#">{{ officetype.officetype_nepali }}</a></td>
+            <td><a href="#">{{ officetype.officetype_english }}</a></td>
+            <td>
+                <a href="{% url 'officetype-update' officetype.id %}" class="btn btn-info btn-xs">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'officetype-delete' officetype.id %}" class="btn btn-danger btn-xs">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+{% endblock content %}

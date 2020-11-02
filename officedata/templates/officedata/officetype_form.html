@@ -5,11 +5,11 @@
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Type Section Name Here</legend>
+                <legend class="border-bottom mb-4">कार्यालयको प्रकार बनाउनुहोस | (Add a Office Type)</legend>
                     {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Submit</button>
+                <button class="btn btn-outline-info" type="submit">प्रेश गर्नुहोस</button>
             </div>
         </form>
     </div>

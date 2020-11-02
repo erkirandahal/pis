@@ -26,3 +26,15 @@ class Employeetype(models.Model):
 
     def get_absolute_url(self):
         return reverse('employeetype-list')
+
+class Sectiontype(models.Model):
+    sectiontype_nepali = models.CharField(max_length=70, verbose_name="शाखाको नाम")
+    sectiontype_english = models.CharField(max_length=70, verbose_name="Section Name")
+    created_date = models.DateTimeField(default=timezone.now)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+
+    def __str__(self):
+        return self.sectiontype_nepali
+
+    def get_absolute_url(self):
+        return reverse('sectiontype-list')

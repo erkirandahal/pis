@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django import forms
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .forms import DesignationCreateForm, EmployeeTypeCreateForm
-from .models import Designation, Employeetype
+from .forms import DesignationCreateForm, EmployeeTypeCreateForm, SectionTypeCreateForm
+from .models import Designation, Employeetype, Sectiontype
 from django.views.generic import (CreateView,
                                   ListView,
                                   DetailView,
@@ -23,6 +24,11 @@ class DesignationCreateView(LoginRequiredMixin, CreateView):
 class DesignationListView(LoginRequiredMixin, ListView):
     model = Designation
     template_name = 'designation/designation_list.html'
+
+
+    # def get_queryset(self):
+    #     user = get_object_or_404(User, username=self.kwargs.get('username'))
+    #     return Designation.objects.filter(author=user).order_by('-date_posted')
 
 class DesignationDetailView(LoginRequiredMixin, DetailView):
     model = Designation
@@ -72,3 +78,19 @@ class EmployeeTypeUpdateView(LoginRequiredMixin, UpdateView):
 class EmployeeTypeDeleteView(LoginRequiredMixin, DeleteView):
     model = Employeetype
     success_url = '/employeetype/list/'
+
+'''  --------------------------------------------------------------------------------------------------------
+					Section Type Views Starts Here 
+-----------------------------------------------------------------------------------------------------------'''
+
+class SectionTypeCreateView(LoginRequiredMixin, CreateView):
+    form_class = SectionTypeCreateForm
+    template_name = 'officialdata/sectiontype_form.html'
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+class SectionTypeListView(LoginRequiredMixin, ListView):
+    model = Sectiontype
+    template_name = 'sectiontype/sectiontype_list.html'
