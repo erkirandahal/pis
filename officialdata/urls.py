@@ -4,7 +4,11 @@ from .views import (
     DesignationListView,
     DesignationDetailView,
     DesignationUpdateView,
-    DesignationDeleteView
+    DesignationDeleteView,
+    EmployeeTypeCreateView,
+    EmployeeTypeListView,
+    EmployeeTypeUpdateView,
+    EmployeeTypeDeleteView,
 )
 from . import views
 
@@ -14,4 +18,8 @@ urlpatterns = [
     path('designation/list/<int:pk>', DesignationDetailView.as_view(), name='designation-detail'),
     path('designation/update/<int:pk>', DesignationUpdateView.as_view(), name='designation-update'),
     path('designation/delete/<int:pk>', DesignationDeleteView.as_view(), name='designation-delete'),
+    path('employeetype/create/', EmployeeTypeCreateView.as_view(), name='employeetype-create'),
+    path('employeetype/list/', EmployeeTypeListView.as_view(), name='employeetype-list'),
+    path('employeetype/update/<int:pk>', EmployeeTypeUpdateView.as_view(), name='employeetype-update'),
+    path('employeetype/delete/<int:pk>', EmployeeTypeDeleteView.as_view(), name='employeetype-delete'),
 ]

@@ -3,8 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .forms import DesignationCreateForm
-from .models import Designation
+from .forms import DesignationCreateForm, EmployeeTypeCreateForm
+from .models import Designation, Employeetype
 from django.views.generic import (CreateView,
                                   ListView,
                                   DetailView,
@@ -44,3 +44,31 @@ class DesignationUpdateView(LoginRequiredMixin, UpdateView):
 class DesignationDeleteView(LoginRequiredMixin, DeleteView):
     model = Designation
     success_url = '/designation/list/'
+
+'''  --------------------------------------------------------------------------------------------------------
+					Employee Type Addition Views Starts Here (स्थायी / Permanent, करार / Contract etc. 
+-----------------------------------------------------------------------------------------------------------'''
+
+class EmployeeTypeCreateView(LoginRequiredMixin, CreateView):
+    form_class = EmployeeTypeCreateForm
+    template_name = 'officialdata/employeetype_form.html'
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+class EmployeeTypeListView(LoginRequiredMixin, ListView):
+    model = Employeetype
+    template_name = 'employeetype/employeetype_list.html'
+
+class EmployeeTypeUpdateView(LoginRequiredMixin, UpdateView):
+    model = Employeetype
+    fields = ['employeetype_nepali', 'employeetype_english']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+class EmployeeTypeDeleteView(LoginRequiredMixin, DeleteView):
+    model = Employeetype
+    success_url = '/employeetype/list/'
