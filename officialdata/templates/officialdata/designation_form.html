@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">नयाँ पद थप्नुहोस | (Add a new Designation)</legend>
+                    {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">प्रेश गर्नुहोस</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

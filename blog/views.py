@@ -8,7 +8,7 @@ from django.views.generic import (ListView,
 	UpdateView,
 	DeleteView,
 	)
-from .models import Post
+from .models import Post, Section
 
 def home(request):
 	context = {
@@ -38,7 +38,8 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
 	model = Post
-	fields = ['title', 'content']
+	fields = ['title',
+			  'content']
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user
@@ -66,6 +67,23 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		if self.request.user == post.author:
 			return True
 		return False
+'''  --------------------------------------------------------------------------------------------------------
+					Section (शाखा) Code Begins
+-----------------------------------------------------------------------------------------------------------'''
+class SectionCreateView(LoginRequiredMixin, CreateView):
+	model = Section
+	fields = ['section_Nepali', 'section_English']
+
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		return super().form_valid(form)
+
+class SectionListView(ListView):
+	model = Post
+	template_name = 'blog/section_name.html'
+	context_object_name = 'section'
+	paginate_by = 5
+
 
 def about(request):
 	return render(request, 'blog/about.html', {'title': 'About'})
