@@ -11,6 +11,12 @@ from .views import (
     EmployeeTypeDeleteView,
     SectionTypeCreateView,
     SectionTypeListView,
+    SectionTypeUpdateView,
+    SectionTypeDeleteView,
+    ServiceGroupCreateView,
+    ServiceGroupListView,
+    ServiceGroupUpdateView,
+    ServiceGroupDeleteView,
 )
 from . import views
 
@@ -26,4 +32,10 @@ urlpatterns = [
     path('employeetype/delete/<int:pk>', EmployeeTypeDeleteView.as_view(), name='employeetype-delete'),
     path('sectiontype/create/', SectionTypeCreateView.as_view(), name='sectiontype-create'),
     path('sectiontype/list/', SectionTypeListView.as_view(), name='sectiontype-list'),
+    path('sectiontype/update/<int:pk>', SectionTypeUpdateView.as_view(), name='sectiontype-update'),
+    path('sectiontype/delete/<int:pk>', SectionTypeDeleteView.as_view(), name='sectiontype-delete'),
+    path('servicegroup/create/', ServiceGroupCreateView.as_view(), name='servicegroup-create'),
+    path('servicegroup/list/', ServiceGroupListView.as_view(), name='servicegroup-list'),
+    path('servicegroup/update/<int:pk>', ServiceGroupUpdateView.as_view(), name='servicegroup-update'),
+    path('servicegroup/delete/<int:pk>', ServiceGroupDeleteView.as_view(), name='servicegroup-delete'),
 ]

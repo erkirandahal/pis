@@ -3,9 +3,9 @@
 {% block content %}
 <div class="col-md-12">
       <div class="d-flex justify-content-between">
-        <div><h6 class="text-center alert alert-info">शाखाको विवरण</h6></div>
+        <div><h6 class="text-center alert alert-info">सेवा समूहको विवरण</h6></div>
         <div>
-            <a href="{% url 'sectiontype-create' %}" class="btn btn-info btn-bg">
+            <a href="{% url 'servicegroup-create' %}" class="btn btn-info btn-bg">
                   <i class="fas fa-plus"></i> नयाँ थप्ने
             </a>
         </div>
@@ -14,22 +14,22 @@
         <thead>
         <tr>
             <th scope="col">क्र.स.</th>
-            <th scope="col">शाखाको नाम</th>
-            <th scope="col">Section Name</th>
+            <th scope="col">सेवा समूह</th>
+            <th scope="col">Service Group</th>
             <th scope="col">एक्सन</th>
         </tr>
         </thead>
         <tbody>
-        {% for sectiontype in sectiontype_list %}
+        {% for servicegroup in servicegroup_list %}
         <tr>
-            <th scope="row">{{ sectiontype.id }}</th>
-            <td>{{ sectiontype.sectiontype_nepali }}</td>
-            <td>{{ sectiontype.sectiontype_english }}</td>
+            <th scope="row">{{ servicegroup.id }}</th>
+            <td>{{ servicegroup.servicegroup_nepali }}</td>
+            <td>{{ servicegroup.servicegroup_english }}</td>
             <td>
-                <a href="{% url 'sectiontype-update' sectiontype.id %}" class="btn btn-info btn-xs">
+                <a href="{% url 'servicegroup-update' servicegroup.id %}" class="btn btn-info btn-xs">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="{% url 'sectiontype-delete' sectiontype.id %}" class="btn btn-danger btn-xs">
+                <a href="{% url 'servicegroup-delete' servicegroup.id %}" class="btn btn-danger btn-xs">
                     <i class="fas fa-trash"></i>
                 </a>
             </td>

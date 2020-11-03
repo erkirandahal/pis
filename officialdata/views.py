@@ -4,13 +4,15 @@ from django.contrib.auth.decorators import login_required
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .forms import DesignationCreateForm, EmployeeTypeCreateForm, SectionTypeCreateForm
-from .models import Designation, Employeetype, Sectiontype
-from django.views.generic import (CreateView,
-                                  ListView,
-                                  DetailView,
-                                  UpdateView,
-                                  DeleteView,)
+from .forms import DesignationCreateForm, EmployeeTypeCreateForm, SectionTypeCreateForm, ServiceGroupCreateForm
+from .models import Designation, Employeetype, Sectiontype, Servicegroup
+from django.views.generic import (
+    CreateView,
+    ListView,
+    DetailView,
+    UpdateView,
+    DeleteView,
+)
 
 class DesignationCreateView(LoginRequiredMixin, CreateView):
     form_class = DesignationCreateForm
@@ -94,3 +96,45 @@ class SectionTypeCreateView(LoginRequiredMixin, CreateView):
 class SectionTypeListView(LoginRequiredMixin, ListView):
     model = Sectiontype
     template_name = 'sectiontype/sectiontype_list.html'
+
+
+class SectionTypeUpdateView(LoginRequiredMixin, UpdateView):
+    model = Sectiontype
+    fields = ['sectiontype_nepali', 'sectiontype_english']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+class SectionTypeDeleteView(LoginRequiredMixin, DeleteView):
+    model = Sectiontype
+    success_url = '/sectiontype/list/'
+
+
+'''  --------------------------------------------------------------------------------------------------------
+					Service Group Views Starts Here 
+-----------------------------------------------------------------------------------------------------------'''
+
+class ServiceGroupCreateView(LoginRequiredMixin, CreateView):
+    form_class = ServiceGroupCreateForm
+    template_name = 'officialdata/servicegroup_form.html'
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+class ServiceGroupListView(LoginRequiredMixin, ListView):
+    model = Servicegroup
+    template_name = 'servicegroup/servicegroup_list.html'
+
+class ServiceGroupUpdateView(LoginRequiredMixin, UpdateView):
+    model = Servicegroup
+    fields = ['servicegroup_nepali', 'servicegroup_english']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+class ServiceGroupDeleteView(LoginRequiredMixin, DeleteView):
+    model = Servicegroup
+    success_url = '/servicegroup/list/'

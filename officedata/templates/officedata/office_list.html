@@ -1,0 +1,46 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-md-12">
+      <div class="d-flex justify-content-between">
+        <div><h6 class="text-center alert alert-info">कार्यालय विवरण</h6></div>
+        <div>
+            <a href="{% url 'office-create' %}" class="btn btn-info btn-bg">
+                  <i class="fas fa-plus"></i> नयाँ थप्ने
+            </a>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">क्र.स.</th>
+            <th scope="col">कार्यालयको नाम</th>
+            <th scope="col">Office Name</th>
+            <th scope="col">कार्यालयको ठेगाना</th>
+            <th scope="col">कार्यालयको किसिम</th>
+            <th scope="col">एक्सन</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for office in office_list %}
+        <tr>
+            <th scope="row">{{ office.id }}</th>
+            <td>{{ office.officename_nepali }}</td>
+            <td>{{ office.officename_english }}</td>
+            <td>{{ office.officeaddress }}</td>
+            <td>{{ office.officetype }}</td>
+            <td>
+                <a href="{% url 'office-update' office.id %}" class="btn btn-info btn-xs">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'office-delete' office.id %}" class="btn btn-danger btn-xs">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+{% endblock content %}

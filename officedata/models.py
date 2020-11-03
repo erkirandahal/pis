@@ -10,7 +10,21 @@ class Officetype(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.officename_nepali
+        return self.officetype_nepali
 
     def get_absolute_url(self):
         return reverse('officetype-list')
+
+class Office(models.Model):
+    officename_nepali = models.CharField(max_length=100, verbose_name="कार्यालयको नाम")
+    officename_english = models.CharField(max_length=100, verbose_name="Office Name")
+    officeaddress = models.CharField(max_length=100, verbose_name="कार्यालयको ठेगाना")
+    officetype = models.ForeignKey(Officetype, on_delete=models.SET_NULL, null=True, verbose_name="कार्यालयको प्रकार")
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.officename_nepali
+
+    def get_absolute_url(self):
+        return reverse('office-list')

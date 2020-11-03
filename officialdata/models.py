@@ -38,3 +38,15 @@ class Sectiontype(models.Model):
 
     def get_absolute_url(self):
         return reverse('sectiontype-list')
+
+class Servicegroup(models.Model):
+    servicegroup_nepali = models.CharField(max_length=70, verbose_name="सेवा समूहको नाम")
+    servicegroup_english = models.CharField(max_length=70, verbose_name="Service Group Name")
+    created_date = models.DateTimeField(default=timezone.now)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+
+    def __str__(self):
+        return self.servicegroup_nepali
+
+    def get_absolute_url(self):
+        return reverse('servicegroup-list')
