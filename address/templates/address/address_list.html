@@ -22,7 +22,7 @@
         <tbody>
         {% for province in province %}
         <tr>
-            <th scope="row">{{ province.id }}</th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td><a href="#">{{ province.provincename_nepali }}</a></td>
             <td><a href="">{{ province.provincename_english }}</a></td>
             <td>
@@ -59,7 +59,7 @@
         <tbody>
         {% for local in local %}
         <tr>
-            <th scope="row">{{ local.id }}</th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td><a href="#">{{ local.localleveltypename_nepali }}</a></td>
             <td><a href="">{{ local.localleveltype_english }}</a></td>
             <td>

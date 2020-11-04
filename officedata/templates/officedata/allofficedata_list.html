@@ -22,7 +22,7 @@
             <tbody>
             {% for officetype in officetype_list %}
             <tr>
-                <th scope="row">{{ officetype.id }}</th>
+                <th scope="row">{{ forloop.counter }}</th>
                 <td><a href="#">{{ officetype.officetype_nepali }}</a></td>
                 <td>
                     <a href="{% url 'officetype-update' officetype.id %}" class="btn btn-info btn-xs">
@@ -62,7 +62,7 @@
             <tbody>
             {% for office in office_list %}
             <tr>
-                <th scope="row">{{ office.id }}</th>
+                <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ office.officename_nepali }}</td>
                 <td>{{ office.officeaddress }}</td>
                 <td>{{ office.officetype }}</td>

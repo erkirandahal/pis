@@ -22,7 +22,7 @@
         <tbody>
         {% for servicegroup in servicegroup_list %}
         <tr>
-            <th scope="row">{{ servicegroup.id }}</th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td>{{ servicegroup.servicegroup_nepali }}</td>
             <td>{{ servicegroup.servicegroup_english }}</td>
             <td>

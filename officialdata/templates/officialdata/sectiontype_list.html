@@ -22,7 +22,7 @@
         <tbody>
         {% for sectiontype in sectiontype_list %}
         <tr>
-            <th scope="row">{{ sectiontype.id }}</th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td>{{ sectiontype.sectiontype_nepali }}</td>
             <td>{{ sectiontype.sectiontype_english }}</td>
             <td>

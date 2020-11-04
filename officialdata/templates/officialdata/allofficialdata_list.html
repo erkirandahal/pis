@@ -22,7 +22,7 @@
             <tbody>
             {% for servicegroup in servicegroup_list %}
             <tr>
-                <th scope="row">{{ servicegroup.id }}</th>
+                <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ servicegroup.servicegroup_nepali }}</td>
                 <td>
                     <a href="{% url 'servicegroup-update' servicegroup.id %}" class="btn btn-info btn-xs">
@@ -60,7 +60,7 @@
             <tbody>
             {% for sectiontype in sectiontype_list %}
             <tr>
-                <th scope="row">{{ sectiontype.id }}</th>
+                <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ sectiontype.sectiontype_nepali }}</td>
                 <td>
                     <a href="{% url 'sectiontype-update' sectiontype.id %}" class="btn btn-info btn-xs">
@@ -100,7 +100,7 @@
             <tbody>
             {% for employeetype in employeetype_list %}
             <tr>
-                <th scope="row">{{ employeetype.id }}</th>
+                <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ employeetype.employeetype_nepali }}</td>
                 <td>
                     <a href="{% url 'employeetype-update' employeetype.id %}" class="btn btn-info btn-xs">
@@ -138,7 +138,7 @@
             <tbody>
             {% for designation in designation_list %}
             <tr>
-                <th scope="row">{{ designation.id }}</th>
+                <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ designation.designation_nepali }}</td>
                 <td>
                     <a href="{% url 'designation-update' designation.id %}" class="btn btn-info btn-xs">

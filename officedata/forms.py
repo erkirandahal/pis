@@ -9,4 +9,4 @@ class OfficeTypeCreateForm(forms.ModelForm):
 class OfficeCreateForm(forms.ModelForm):
     class Meta:
         model = Office
-        fields = ['officename_nepali', 'officename_english', 'officeaddress', 'officetype']
+        fields = ['officename_nepali', 'officename_english', 'officeaddress', 'officetype', 'office_wardno']

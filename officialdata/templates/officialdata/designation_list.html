@@ -22,7 +22,7 @@
         <tbody>
         {% for designation in designation_list %}
         <tr>
-            <th scope="row">{{ designation.id }}</th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td>{{ designation.designation_nepali }}</td>
             <td>{{ designation.designation_english }}</td>
             <td>

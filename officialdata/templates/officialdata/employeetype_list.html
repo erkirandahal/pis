@@ -22,7 +22,7 @@
         <tbody>
         {% for employeetype in employeetype_list %}
         <tr>
-            <th scope="row">{{ employeetype.id }}</th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td>{{ employeetype.employeetype_nepali }}</td>
             <td>{{ employeetype.employeetype_english }}</td>
             <td>

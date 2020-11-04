@@ -22,7 +22,7 @@
         <tbody>
         {% for province in province_list %}
         <tr>
-            <th scope="row">{{ province.id }}</th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td><a href="#">{{ province.provincename_nepali }}</a></td>
             <td><a href="">{{ province.provincename_english }}</a></td>
             <td>

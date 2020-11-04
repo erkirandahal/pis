@@ -22,7 +22,7 @@
         <tbody>
         {% for officetype in officetype_list %}
         <tr>
-            <th scope="row">{{ officetype.id }}</th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td><a href="#">{{ officetype.officetype_nepali }}</a></td>
             <td><a href="#">{{ officetype.officetype_english }}</a></td>
             <td>

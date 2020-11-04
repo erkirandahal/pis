@@ -36,7 +36,7 @@ class OfficeTypeUpdateView(LoginRequiredMixin, UpdateView):
 
 class OfficeTypeDeleteView(LoginRequiredMixin, DeleteView):
     model = Officetype
-    success_url = '/officetype/list/'
+    success_url = '/officetype/list'
 
 class OfficeCreateView(LoginRequiredMixin, CreateView):
     form_class = OfficeCreateForm
@@ -54,7 +54,7 @@ class OfficeListView(LoginRequiredMixin, ListView):
 
 class OfficeUpdateView(LoginRequiredMixin, UpdateView):
     model = Office
-    fields = ['officename_nepali', 'officename_english', 'officeaddress', 'officetype']
+    fields = ['officename_nepali', 'officename_english', 'officeaddress', 'officetype', 'office_wardno']
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -62,7 +62,7 @@ class OfficeUpdateView(LoginRequiredMixin, UpdateView):
 
 class OfficeDeleteView(LoginRequiredMixin, DeleteView):
     model = Office
-    success_url = '/office/list/'
+    success_url = '/office/list'
 
 
 #GET MORE THAN ONE VIEW TO RENDER IN SINGLE PAGE,
