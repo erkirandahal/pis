@@ -63,3 +63,16 @@ class OfficeUpdateView(LoginRequiredMixin, UpdateView):
 class OfficeDeleteView(LoginRequiredMixin, DeleteView):
     model = Office
     success_url = '/office/list/'
+
+
+#GET MORE THAN ONE VIEW TO RENDER IN SINGLE PAGE,
+
+class AllOfficedataView(LoginRequiredMixin, ListView):
+    template_name = 'officedata/allofficedata_list.html'
+    queryset = Officetype.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(AllOfficedataView, self).get_context_data(**kwargs)
+        context['office_list'] = Office.objects.all()
+        context['officetype_list'] = self.queryset
+        return context

@@ -1,0 +1,48 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row container">
+    <div class="content-section col-md-6">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">स्थानीय तहको सिमिम थप्नुहोस | Add a new Local Level Type</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">पेश गर्ने</button>
+            </div>
+        </form>
+    </div>
+    <div class="content-section col-md-6">
+            <div><h6 class="text-center alert alert-info">स्थानीय तहको किसिम</h6></div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">क्र.स.</th>
+                <th scope="col">स्थानीय तह किसिम</th>
+                <th scope="col">Local Level Type</th>
+                <th scope="col">एक्सन</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for localleveltype in localleveltype %}
+            <tr>
+                <th scope="row">{{ localleveltype.id }}</th>
+                <td><a href="#">{{ localleveltype.localleveltypename_nepali }}</a></td>
+                <td><a href="#">{{ localleveltype.localleveltypename_nepali }}</a></td>
+                <td>
+                    <a href="#" class="btn btn-info btn-xs">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="#" class="btn btn-danger btn-xs">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

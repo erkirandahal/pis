@@ -17,6 +17,7 @@ from .views import (
     ServiceGroupListView,
     ServiceGroupUpdateView,
     ServiceGroupDeleteView,
+    AllOfficialdataListView,
 )
 from . import views
 
@@ -38,4 +39,5 @@ urlpatterns = [
     path('servicegroup/list/', ServiceGroupListView.as_view(), name='servicegroup-list'),
     path('servicegroup/update/<int:pk>', ServiceGroupUpdateView.as_view(), name='servicegroup-update'),
     path('servicegroup/delete/<int:pk>', ServiceGroupDeleteView.as_view(), name='servicegroup-delete'),
+    path('allofficialdata/list/', AllOfficialdataListView.as_view(), name='allofficialdata-list'),
 ]

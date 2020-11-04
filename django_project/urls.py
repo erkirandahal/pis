@@ -27,7 +27,9 @@ urlpatterns = [
          name='password_reset_complete'),
     path('', include('blog.urls')),
     path('', include('officialdata.urls')),
-    path('',include('officedata.urls'))
+    path('', include('officedata.urls')),
+    path('', include('official.urls')),
+    path('', include('address.urls')),
 ]
 
 if settings.DEBUG:

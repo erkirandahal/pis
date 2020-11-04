@@ -1,0 +1,48 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row container">
+    <div class="content-section col-md-6">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">प्रदेश थप्नुहोस | Add Province</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">पेश गर्ने</button>
+            </div>
+        </form>
+    </div>
+    <div class="content-section col-md-6">
+            <div><h6 class="text-center alert alert-info">प्रदेश</h6></div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">क्र.स.</th>
+                <th scope="col">प्रदेश</th>
+                <th scope="col">Province</th>
+                <th scope="col">एक्सन</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for province in province %}
+            <tr>
+                <th scope="row">{{ province.id }}</th>
+                <td><a href="#">{{ province.provincename_nepali }}</a></td>
+                <td><a href="#">{{ province.provincename_nepali }}</a></td>
+                <td>
+                    <a href="#" class="btn btn-info btn-xs">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="#" class="btn btn-danger btn-xs">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

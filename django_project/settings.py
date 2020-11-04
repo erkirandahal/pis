@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'officialdata.apps.OfficialdataConfig',
     'officedata.apps.OfficedataConfig',
+    'official.apps.OfficialConfig',
+    'address.apps.AddressConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

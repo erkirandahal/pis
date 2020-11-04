@@ -138,3 +138,18 @@ class ServiceGroupUpdateView(LoginRequiredMixin, UpdateView):
 class ServiceGroupDeleteView(LoginRequiredMixin, DeleteView):
     model = Servicegroup
     success_url = '/servicegroup/list/'
+
+
+#GET MORE THAN ONE VIEW TO RENDER IN SINGLE PAGE,
+
+class AllOfficialdataListView(LoginRequiredMixin, ListView):
+    template_name = 'officialdata/allofficialdata_list.html'
+    queryset = Servicegroup.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(AllOfficialdataListView, self).get_context_data(**kwargs)
+        context['designation_list'] = Designation.objects.all()
+        context['sectiontype_list'] = Sectiontype.objects.all()
+        context['employeetype_list'] = Employeetype.objects.all()
+        context['servicegroup_list'] = self.queryset
+        return context

@@ -10,8 +10,8 @@
             </a>
         </div>
     </div>
-    <table class="table table-hover">
-        <thead>
+    <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
         <tr>
             <th scope="col">क्र.स.</th>
             <th scope="col">पद (नेपाली)</th>
@@ -23,8 +23,8 @@
         {% for designation in designation_list %}
         <tr>
             <th scope="row">{{ designation.id }}</th>
-            <td><a href="{% url 'designation-detail' designation.id %}">{{ designation.designation_nepali }}</a></td>
-            <td><a href="{% url 'designation-detail' designation.id %}">{{ designation.designation_english }}</a></td>
+            <td>{{ designation.designation_nepali }}</td>
+            <td>{{ designation.designation_english }}</td>
             <td>
                 <a href="{% url 'designation-update' designation.id %}" class="btn btn-info btn-xs">
                     <i class="fas fa-edit"></i>

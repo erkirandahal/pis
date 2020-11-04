@@ -1,0 +1,157 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row container">
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between">
+            <div><h6 class="text-center alert alert-info">सेवा समूहको विवरण</h6></div>
+            <div>
+                <a href="{% url 'servicegroup-create' %}" class="btn btn-info btn-bg">
+                    <i class="fas fa-plus"></i> नयाँ थप्ने
+                </a>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">क्र.स.</th>
+                <th scope="col">सेवा समूह</th>
+                <th scope="col">एक्सन</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for servicegroup in servicegroup_list %}
+            <tr>
+                <th scope="row">{{ servicegroup.id }}</th>
+                <td>{{ servicegroup.servicegroup_nepali }}</td>
+                <td>
+                    <a href="{% url 'servicegroup-update' servicegroup.id %}" class="btn btn-info btn-xs">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{% url 'servicegroup-delete' servicegroup.id %}" class="btn btn-danger btn-xs">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------
+                                Second Div (Table)  Starts from here
+    ---------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between">
+            <div><h6 class="text-center alert alert-info">शाखाको विवरण</h6></div>
+            <div>
+                <a href="{% url 'sectiontype-create' %}" class="btn btn-info btn-bg">
+                    <i class="fas fa-plus"></i> नयाँ थप्ने
+                </a>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">क्र.स.</th>
+                <th scope="col">शाखाको नाम</th>
+                <th scope="col">एक्सन</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for sectiontype in sectiontype_list %}
+            <tr>
+                <th scope="row">{{ sectiontype.id }}</th>
+                <td>{{ sectiontype.sectiontype_nepali }}</td>
+                <td>
+                    <a href="{% url 'sectiontype-update' sectiontype.id %}" class="btn btn-info btn-xs">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{% url 'sectiontype-delete' sectiontype.id %}" class="btn btn-danger btn-xs">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<!---------------------------------------------------------------------------------------------------------------------
+                            Second Container and 3rd Div/ 3rd Table Starts from here
+---------------------------------------------------------------------------------------------------------------------->
+<div class="row container">
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between">
+            <div><h6 class="text-center alert alert-info">कर्मचारी किसिमको विवरण</h6></div>
+            <div>
+                <a href="{% url 'employeetype-create' %}" class="btn btn-info btn-bg">
+                    <i class="fas fa-plus"></i> नयाँ थप्ने
+                </a>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">क्र.स.</th>
+                <th scope="col">कर्मचारी किसिम (नेपाली)</th>
+                <th scope="col">एक्सन</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for employeetype in employeetype_list %}
+            <tr>
+                <th scope="row">{{ employeetype.id }}</th>
+                <td>{{ employeetype.employeetype_nepali }}</td>
+                <td>
+                    <a href="{% url 'employeetype-update' employeetype.id %}" class="btn btn-info btn-xs">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{% url 'employeetype-delete' employeetype.id %}" class="btn btn-danger btn-xs">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------
+                                Second Div (Table)  Starts from here
+    ---------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between">
+            <div><h6 class="text-center alert alert-info">पदहरुको विवरण</h6></div>
+            <div>
+                <a href="{% url 'designation-create' %}" class="btn btn-info btn-bg">
+                    <i class="fas fa-plus"></i> नयाँ थप्ने
+                </a>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">क्र.स.</th>
+                <th scope="col">पद (नेपाली)</th>
+                <th scope="col">एक्सन</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for designation in designation_list %}
+            <tr>
+                <th scope="row">{{ designation.id }}</th>
+                <td>{{ designation.designation_nepali }}</td>
+                <td>
+                    <a href="{% url 'designation-update' designation.id %}" class="btn btn-info btn-xs">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{% url 'designation-delete' designation.id %}" class="btn btn-danger btn-xs">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
