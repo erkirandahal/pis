@@ -1,10 +1,19 @@
 from django import forms
 from .models import Staff
 from officedata.models import Office, Officetype
+from address.models import Province, LocalLevelType
 
 class StaffCreateForm(forms.ModelForm):
     class Meta:
         model = Staff
-        fields = ['staffname_nepali', 'staffname_english', 'staff_id', 'servicegroup_nepali', 'designation_nepali', 'Sectiontype_nepali',
+        fields = ['staffname_nepali', 'staffname_english', 'staff_id',
+                  'appointment_date', 'officeentry_date',
+                  'employeetype', 'servicegroup_nepali', 'designation_nepali', 'Sectiontype_nepali',
                   'officetype_nepali', 'officename_nepali',
-                  'citizenship_no', 'citizenship_dispatcheddate', 'citizenship_dispatcheddistrict']
+                  'dob', 'citizenship_no', 'citizenship_dispatcheddate', 'citizenship_dispatcheddistrict',
+                  'grandfather_name', 'father_name', 'mother_name',
+                  'contact_no', 'email',
+                  'permanentaddr_province', 'permanentaddr_district', 'permanentaddr_locallevel', 'permanentaddr_localleveltype',
+                  'temporaryaddr_province', 'temporaryaddr_district', 'temporaryaddr_locallevel',
+                  'temporaryaddr_localleveltype',
+                  ]

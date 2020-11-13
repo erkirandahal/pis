@@ -4,12 +4,12 @@
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">शाखा हटाउने</legend>
-                <h2>Are You Sure you want to delete the post " {{ object.sectiontype_nepali }} "</h2>
+                <legend class="border-bottom mb-4">स्थानीय तह किसिम </legend>
+                <h2>Are You Sure you want to delete the post " {{ object.provincename_nepali }} "</h2>
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-danger" type="submit">हो! हटाउने</button>
-                <a class="btn btn-outline-secondary" href="{% url 'designation-list' %}">होइन</a>
+                <a class="btn btn-outline-secondary" href="{% url 'province-list' %}">होइन</a>
             </div>
         </form>
     </div>

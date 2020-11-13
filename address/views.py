@@ -15,8 +15,10 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from officedata.views import UserAccessMixin
 
-class ProvinceCreateView(LoginRequiredMixin, CreateView):
+class ProvinceCreateView(LoginRequiredMixin, UserAccessMixin, CreateView):
+    permission_required = 'address.add_province'
     form_class = ProvinceCreateForm
     template_name = 'address/province_form.html'
 
@@ -24,11 +26,28 @@ class ProvinceCreateView(LoginRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class ProvinceListView(LoginRequiredMixin, ListView):
+class ProvinceListView(LoginRequiredMixin, UserAccessMixin, ListView):
+    permission_required = 'address.list_province'
     model = Province
     template_name = 'province/province_list.html'
 
-class LocalLevelTypeCreateView(LoginRequiredMixin, CreateView):
+class ProvinceUpdateView(LoginRequiredMixin, UserAccessMixin, UpdateView):
+    permission_required = 'address.change_province'
+    model = Province
+    fields = ['provincename_nepali', 'provincename_english']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+class ProvinceDeleteView(LoginRequiredMixin, DeleteView):
+    # pass
+    # permission_required = 'address.delete_localleveltype'
+    model = Province
+    success_url = '/province/list/'
+
+class LocalLevelTypeCreateView(LoginRequiredMixin, UserAccessMixin, CreateView):
+    permission_required = 'address.add_localleveltype'
     form_class = LocalLevelTypeCreateForm
     template_name = 'address/localleveltype_form.html'
 
@@ -36,18 +55,27 @@ class LocalLevelTypeCreateView(LoginRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class LocalLevelListView(LoginRequiredMixin, ListView):
+class LocalLevelListView(LoginRequiredMixin, UserAccessMixin, ListView):
+    permission_required = 'address.list_localleveltype'
     model = LocalLevelType
     template_name = 'address/localleveltype_list.html'
 
+
+class LocallevelTypeDeleteView(LoginRequiredMixin, UserAccessMixin, DeleteView):
+    permission_required = 'address.delete_localleveltype'
+    model = LocalLevelType
+    success_url = '/localleveltype/list/'
+
+
 #GET MORE THAN ONE VIEW TO RENDER IN SINGLE PAGE,
 
-class AddressListView(LoginRequiredMixin, ListView):
+class AddressListView(LoginRequiredMixin, UserAccessMixin, ListView):
+    permission_required = ('address.list_province', 'address.list_localeveltype')
     template_name = 'address/address_list.html'
     queryset = Province.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super(AddressListView, self).get_context_data(**kwargs)
-        context['local'] = LocalLevelType.objects.all()
-        context['province'] = self.queryset
+        context['localleveltype_list'] = LocalLevelType.objects.all()
+        context['province_list'] = self.queryset
         return context

@@ -13,8 +13,10 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from officedata.views import UserAccessMixin
 
-class DesignationCreateView(LoginRequiredMixin, CreateView):
+class DesignationCreateView(LoginRequiredMixin, UserAccessMixin, CreateView):
+    permission_required = 'officialdata.add_designation'
     form_class = DesignationCreateForm
     template_name = 'officialdata/designation_form.html'
     # success_url = '/designation/list/'
@@ -23,7 +25,8 @@ class DesignationCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class DesignationListView(LoginRequiredMixin, ListView):
+class DesignationListView(LoginRequiredMixin, UserAccessMixin, ListView):
+    permission_required = 'officialdata.view_designation'
     model = Designation
     template_name = 'designation/designation_list.html'
 
@@ -32,7 +35,8 @@ class DesignationListView(LoginRequiredMixin, ListView):
     #     user = get_object_or_404(User, username=self.kwargs.get('username'))
     #     return Designation.objects.filter(author=user).order_by('-date_posted')
 
-class DesignationDetailView(LoginRequiredMixin, DetailView):
+class DesignationDetailView(LoginRequiredMixin, UserAccessMixin, DetailView):
+    permission_required = 'officialdata.view_designation'
     model = Designation
     context_object_name = 'designation'
 
@@ -41,7 +45,8 @@ class DesignationDetailView(LoginRequiredMixin, DetailView):
         context['all_designation'] = self.model.objects.all()
         return context
 
-class DesignationUpdateView(LoginRequiredMixin, UpdateView):
+class DesignationUpdateView(LoginRequiredMixin, UserAccessMixin, UpdateView):
+    permission_required = 'officialdata.change_designation'
     model = Designation
     fields = ['designation_nepali', 'designation_english']
 
@@ -49,7 +54,8 @@ class DesignationUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class DesignationDeleteView(LoginRequiredMixin, DeleteView):
+class DesignationDeleteView(LoginRequiredMixin, UserAccessMixin, DeleteView):
+    permission_required = 'officialdata.delete_designation'
     model = Designation
     success_url = '/designation/list/'
 
@@ -57,7 +63,8 @@ class DesignationDeleteView(LoginRequiredMixin, DeleteView):
 					Employee Type Addition Views Starts Here (स्थायी / Permanent, करार / Contract etc. 
 -----------------------------------------------------------------------------------------------------------'''
 
-class EmployeeTypeCreateView(LoginRequiredMixin, CreateView):
+class EmployeeTypeCreateView(LoginRequiredMixin, UserAccessMixin, CreateView):
+    permission_required = 'officialdata.add_employeetype'
     form_class = EmployeeTypeCreateForm
     template_name = 'officialdata/employeetype_form.html'
 
@@ -65,11 +72,13 @@ class EmployeeTypeCreateView(LoginRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class EmployeeTypeListView(LoginRequiredMixin, ListView):
+class EmployeeTypeListView(LoginRequiredMixin, UserAccessMixin, ListView):
+    permission_required = 'officialdata.view_employeetype'
     model = Employeetype
     template_name = 'employeetype/employeetype_list.html'
 
-class EmployeeTypeUpdateView(LoginRequiredMixin, UpdateView):
+class EmployeeTypeUpdateView(LoginRequiredMixin, UserAccessMixin, UpdateView):
+    permission_required = 'officialdata.change_employeetype'
     model = Employeetype
     fields = ['employeetype_nepali', 'employeetype_english']
 
@@ -77,7 +86,8 @@ class EmployeeTypeUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class EmployeeTypeDeleteView(LoginRequiredMixin, DeleteView):
+class EmployeeTypeDeleteView(LoginRequiredMixin, UserAccessMixin, DeleteView):
+    permission_required = 'officialdata.delete_employeetype'
     model = Employeetype
     success_url = '/employeetype/list/'
 
@@ -85,7 +95,8 @@ class EmployeeTypeDeleteView(LoginRequiredMixin, DeleteView):
 					Section Type Views Starts Here 
 -----------------------------------------------------------------------------------------------------------'''
 
-class SectionTypeCreateView(LoginRequiredMixin, CreateView):
+class SectionTypeCreateView(LoginRequiredMixin, UserAccessMixin, CreateView):
+    permission_required = 'officialdata.add_sectiontype'
     form_class = SectionTypeCreateForm
     template_name = 'officialdata/sectiontype_form.html'
 
@@ -93,12 +104,14 @@ class SectionTypeCreateView(LoginRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class SectionTypeListView(LoginRequiredMixin, ListView):
+class SectionTypeListView(LoginRequiredMixin, UserAccessMixin, ListView):
+    permission_required = 'officialdata.list_sectiontype'
     model = Sectiontype
     template_name = 'sectiontype/sectiontype_list.html'
 
 
-class SectionTypeUpdateView(LoginRequiredMixin, UpdateView):
+class SectionTypeUpdateView(LoginRequiredMixin, UserAccessMixin, UpdateView):
+    permission_required = 'officialdata.change_sectiontype'
     model = Sectiontype
     fields = ['sectiontype_nepali', 'sectiontype_english']
 
@@ -106,7 +119,8 @@ class SectionTypeUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class SectionTypeDeleteView(LoginRequiredMixin, DeleteView):
+class SectionTypeDeleteView(LoginRequiredMixin, UserAccessMixin, DeleteView):
+    permission_required = 'officialdata.delete_sectiontype'
     model = Sectiontype
     success_url = '/sectiontype/list/'
 
@@ -115,7 +129,8 @@ class SectionTypeDeleteView(LoginRequiredMixin, DeleteView):
 					Service Group Views Starts Here 
 -----------------------------------------------------------------------------------------------------------'''
 
-class ServiceGroupCreateView(LoginRequiredMixin, CreateView):
+class ServiceGroupCreateView(LoginRequiredMixin, UserAccessMixin, CreateView):
+    permission_required = 'officialdata.add_servicegroup'
     form_class = ServiceGroupCreateForm
     template_name = 'officialdata/servicegroup_form.html'
 
@@ -123,11 +138,13 @@ class ServiceGroupCreateView(LoginRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class ServiceGroupListView(LoginRequiredMixin, ListView):
+class ServiceGroupListView(LoginRequiredMixin, UserAccessMixin, ListView):
+    permission_required = 'officialdata.list_servicegroup'
     model = Servicegroup
     template_name = 'servicegroup/servicegroup_list.html'
 
-class ServiceGroupUpdateView(LoginRequiredMixin, UpdateView):
+class ServiceGroupUpdateView(LoginRequiredMixin, UserAccessMixin, UpdateView):
+    permission_required = 'officialdata.change_servicegroup'
     model = Servicegroup
     fields = ['servicegroup_nepali', 'servicegroup_english']
 
@@ -135,14 +152,16 @@ class ServiceGroupUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class ServiceGroupDeleteView(LoginRequiredMixin, DeleteView):
+class ServiceGroupDeleteView(LoginRequiredMixin, UserAccessMixin, DeleteView):
+    permission_required = 'officialdata.delete_servicegroup'
     model = Servicegroup
     success_url = '/servicegroup/list/'
 
 
 #GET MORE THAN ONE VIEW TO RENDER IN SINGLE PAGE,
 
-class AllOfficialdataListView(LoginRequiredMixin, ListView):
+class AllOfficialdataListView(LoginRequiredMixin, UserAccessMixin, ListView):
+    permission_required = ('officialdata.list_servicegroup', 'officialdata.list_designation', 'officialdata.list_sectiontype', 'officialdata.list_employeetype')
     template_name = 'officialdata/allofficialdata_list.html'
     queryset = Servicegroup.objects.all()
 

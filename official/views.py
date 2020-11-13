@@ -14,6 +14,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from officedata.views import UserAccessMixin
 
 class StaffCreateView(LoginRequiredMixin, CreateView):
     form_class = StaffCreateForm

@@ -5,11 +5,13 @@
     <div class="col-md-6">
         <div class="d-flex justify-content-between">
             <div><h6 class="text-center alert alert-info">सेवा समूहको विवरण</h6></div>
+            {% if request.user.is_superuser %}
             <div>
                 <a href="{% url 'servicegroup-create' %}" class="btn btn-info btn-bg">
                     <i class="fas fa-plus"></i> नयाँ थप्ने
                 </a>
             </div>
+            {% endif %}
         </div>
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">

@@ -24,16 +24,31 @@
             </div>
         </fieldset>
         <fieldset>
-            <legend class="border-bottom mb-4 text-center" style="font-size:16px; color:blue; font-weight:bold ">विवरण</legend>
+            <legend class="border-bottom mb-4 text-center" style="font-size:16px; color:blue; font-weight:bold ">सेवा प्रवेश विवरण</legend>
             <div class="form-row">
                 <span class="border-bottom mb-0"></span>
-                <div class="form-group col-md-4 mb-0">
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.appointment_date|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.officeentry_date|as_crispy_field }}
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend class="border-bottom mb-4 text-center" style="font-size:16px; color:blue; font-weight:bold ">सेवा विवरण</legend>
+            <div class="form-row">
+                <span class="border-bottom mb-0"></span>
+                <div class="form-group col-md-3 mb-0">
+                    {{ form.employeetype|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-3 mb-0">
                     {{ form.servicegroup_nepali|as_crispy_field }}
                 </div>
-                <div class="form-group col-md-4 mb-0">
+                <div class="form-group col-md-3 mb-0">
                     {{ form.designation_nepali|as_crispy_field }}
                 </div>
-                <div class="form-group col-md-4 mb-0">
+                <div class="form-group col-md-3 mb-0">
                     {{ form.Sectiontype_nepali|as_crispy_field }}
                 </div>
             </div>
@@ -54,14 +69,80 @@
             <legend class="border-bottom mb-4 text-center" style="font-size:16px; color:blue; font-weight:bold ">नागरिकता विवरण / CITIZENSHIP INFO</legend>
             <div class="form-row">
                 <span class="border-bottom mb-0"></span>
-                <div class="form-group col-md-4 mb-0">
+                <div class="form-group col-md-3 mb-0">
+                    {{ form.dob|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-3 mb-0">
                     {{ form.citizenship_no|as_crispy_field }}
                 </div>
-                <div class="form-group col-md-4 mb-0">
+                <div class="form-group col-md-3 mb-0">
                     {{ form.citizenship_dispatcheddate|as_crispy_field }}
                 </div>
-                <div class="form-group col-md-4 mb-0">
+                <div class="form-group col-md-3 mb-0">
                     {{ form.citizenship_dispatcheddistrict|as_crispy_field }}
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend class="border-bottom mb-4 text-center" style="font-size:16px; color:blue; font-weight:bold ">पारिवारिक विवरण</legend>
+            <div class="form-row">
+                <span class="border-bottom mb-0"></span>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.grandfather_name|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.father_name|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.mother_name|as_crispy_field }}
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend class="border-bottom mb-4 text-center" style="font-size:16px; color:blue; font-weight:bold ">सम्पर्क / विवरण</legend>
+            <div class="form-row">
+                <span class="border-bottom mb-0"></span>
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.contact_no|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.email|as_crispy_field }}
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend class="border-bottom mb-4 text-center" style="font-size:16px; color:blue; font-weight:bold ">स्थायी ठेगाना</legend>
+            <div class="form-row">
+                <span class="border-bottom mb-0"></span>
+                <div class="form-group col-md-3 mb-0">
+                    {{ form.permanentaddr_province|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-3 mb-0">
+                    {{ form.permanentaddr_district|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-3 mb-0">
+                    {{ form.permanentaddr_locallevel|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-3 mb-0">
+                    {{ form.permanentaddr_localleveltype|as_crispy_field }}
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend class="border-bottom mb-4 text-center" style="font-size:16px; color:blue; font-weight:bold ">अस्थायी ठेगाना</legend>
+            <div class="form-row">
+                <span class="border-bottom mb-0"></span>
+                <div class="form-group col-md-3 mb-0">
+                    {{ form.temporaryaddr_province|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-3 mb-0">
+                    {{ form.temporaryaddr_district|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-3 mb-0">
+                    {{ form.temporaryaddr_locallevel|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-3 mb-0">
+                    {{ form.temporaryaddr_localleveltype|as_crispy_field }}
                 </div>
             </div>
         </fieldset>
