@@ -13,7 +13,7 @@ class StaffCreateForm(forms.ModelForm):
                   'dob', 'citizenship_no', 'citizenship_dispatcheddate', 'citizenship_dispatcheddistrict',
                   'grandfather_name', 'father_name', 'mother_name',
                   'contact_no', 'email',
-                  'permanentaddr_province', 'permanentaddr_district', 'permanentaddr_locallevel', 'permanentaddr_localleveltype',
+                  'permanentaddr_province', 'permanentaddr_district', 'permanentaddr_locallevel', 'permanentaddr_localleveltype', 'permanentaddr_wardno',
                   'temporaryaddr_province', 'temporaryaddr_district', 'temporaryaddr_locallevel',
-                  'temporaryaddr_localleveltype',
+                  'temporaryaddr_localleveltype', 'temporaryaddr_wardno'
                   ]

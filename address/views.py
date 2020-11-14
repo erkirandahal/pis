@@ -77,5 +77,5 @@ class AddressListView(LoginRequiredMixin, UserAccessMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(AddressListView, self).get_context_data(**kwargs)
         context['localleveltype_list'] = LocalLevelType.objects.all()
-        context['province_list'] = self.queryset
+        context['province'] = self.queryset
         return context

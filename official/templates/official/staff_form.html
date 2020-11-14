@@ -114,10 +114,10 @@
             <legend class="border-bottom mb-4 text-center" style="font-size:16px; color:blue; font-weight:bold ">स्थायी ठेगाना</legend>
             <div class="form-row">
                 <span class="border-bottom mb-0"></span>
-                <div class="form-group col-md-3 mb-0">
+                <div class="form-group col-md-2 mb-0">
                     {{ form.permanentaddr_province|as_crispy_field }}
                 </div>
-                <div class="form-group col-md-3 mb-0">
+                <div class="form-group col-md-2 mb-0">
                     {{ form.permanentaddr_district|as_crispy_field }}
                 </div>
                 <div class="form-group col-md-3 mb-0">
@@ -126,16 +126,19 @@
                 <div class="form-group col-md-3 mb-0">
                     {{ form.permanentaddr_localleveltype|as_crispy_field }}
                 </div>
+                <div class="form-group col-md-2 mb-0">
+                    {{ form.permanentaddr_wardno|as_crispy_field }}
+                </div>
             </div>
         </fieldset>
         <fieldset>
             <legend class="border-bottom mb-4 text-center" style="font-size:16px; color:blue; font-weight:bold ">अस्थायी ठेगाना</legend>
             <div class="form-row">
                 <span class="border-bottom mb-0"></span>
-                <div class="form-group col-md-3 mb-0">
+                <div class="form-group col-md-2 mb-0">
                     {{ form.temporaryaddr_province|as_crispy_field }}
                 </div>
-                <div class="form-group col-md-3 mb-0">
+                <div class="form-group col-md-2 mb-0">
                     {{ form.temporaryaddr_district|as_crispy_field }}
                 </div>
                 <div class="form-group col-md-3 mb-0">
@@ -143,6 +146,9 @@
                 </div>
                 <div class="form-group col-md-3 mb-0">
                     {{ form.temporaryaddr_localleveltype|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-2 mb-0">
+                    {{ form.temporaryaddr_wardno|as_crispy_field }}
                 </div>
             </div>
         </fieldset>

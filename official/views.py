@@ -36,3 +36,30 @@ class StaffCreateView(LoginRequiredMixin, CreateView):
 class StaffListView(LoginRequiredMixin, ListView):
     model = Staff
     template_name = 'staff/staff_list.html'
+
+
+class StaffUpdateView(LoginRequiredMixin, UpdateView):
+    # permission_required = 'officialdata.change_servicegroup'
+    model = Staff
+    fields = ['staffname_nepali', 'staffname_english', 'staff_id',
+              'appointment_date', 'officeentry_date',
+              'employeetype', 'servicegroup_nepali', 'designation_nepali', 'Sectiontype_nepali',
+              'officetype_nepali', 'officename_nepali',
+              'dob', 'citizenship_no', 'citizenship_dispatcheddate', 'citizenship_dispatcheddistrict',
+              'grandfather_name', 'father_name', 'mother_name',
+              'contact_no', 'email',
+              'permanentaddr_province', 'permanentaddr_district', 'permanentaddr_locallevel',
+              'permanentaddr_localleveltype', 'permanentaddr_wardno',
+              'temporaryaddr_province', 'temporaryaddr_district', 'temporaryaddr_locallevel',
+              'temporaryaddr_localleveltype', 'temporaryaddr_wardno'
+              ]
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+class StaffDetailView(DetailView):
+	model = Staff
+
+class OnlickPrint(DetailView):
+	model = Staff

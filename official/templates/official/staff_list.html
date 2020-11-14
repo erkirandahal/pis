@@ -5,28 +5,35 @@
       <div class="d-flex justify-content-between">
         <div><h6 class="text-center alert alert-info">कर्मचारी विवरण</h6></div>
         <div>
-            <a href="{% url 'office-create' %}" class="btn btn-info btn-bg">
+            <a href="{% url 'staff-create' %}" class="btn btn-info btn-bg">
                   <i class="fas fa-plus"></i> नयाँ थप्ने
             </a>
         </div>
     </div>
-    <table class="table table-hover">
-        <thead>
+    <table class="table table-hover table-bordered">
+        <thead style="text-align:center; color:red;">
         <tr>
             <th scope="col">क्र.स.</th>
             <th scope="col">नाम</th>
-            <th scope="col">Name</th>
+            <th scope="col">शाखा</th>
+            <th scope="col">पद</th>
+            <th scope="col">कार्यालय</th>
+            <th scope="col">सम्पर्क नं.</th>
             <th scope="col">एक्सन</th>
         </tr>
         </thead>
         <tbody>
         {% for staff in staff_list %}
-        <tr>
-            <th scope="row">{{ staff.id }}</th>
-            <td>{{ staff.staffname_nepali }}</td>
-            <td>{{ staff.staffname_english }}</td>
+        <tr style="text-align:center">
+            <th scope="row">{{ forloop.counter }}</th>
+            <td><a href="{% url 'staff-detail' staff.id %}" target="_blank">{{ staff.staffname_nepali }}</a></td>
+            <td>{{ staff.Sectiontype_nepali }}</td>
+            <td>{{ staff.designation_nepali }}</td>
+            <td>{{ staff.officename_nepali }}</td>
+            <td>{{ staff.contact_no }}</td>
+
             <td>
-                <a href="#" class="btn btn-info btn-xs">
+                <a href="{% url 'staff-update' staff.id %}" class="btn btn-info btn-xs">
                     <i class="fas fa-edit"></i>
                 </a>
                 <a href="#" class="btn btn-danger btn-xs">
