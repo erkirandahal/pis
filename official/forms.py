@@ -15,5 +15,5 @@ class StaffCreateForm(forms.ModelForm):
                   'contact_no', 'email',
                   'permanentaddr_province', 'permanentaddr_district', 'permanentaddr_locallevel', 'permanentaddr_localleveltype', 'permanentaddr_wardno',
                   'temporaryaddr_province', 'temporaryaddr_district', 'temporaryaddr_locallevel',
-                  'temporaryaddr_localleveltype', 'temporaryaddr_wardno'
+                  'temporaryaddr_localleveltype', 'temporaryaddr_wardno',
                   ]

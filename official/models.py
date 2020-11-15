@@ -4,11 +4,12 @@ from officialdata.models import Servicegroup, Designation, Sectiontype, Employee
 from officedata.models import Office, Officetype
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from address.models import Province, LocalLevelType
 # Create your models here.
 
 class Staff(models.Model):
+    author = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     staffname_nepali = models.CharField(max_length= 150, verbose_name="नाम")
     staffname_english = models.CharField(max_length=150, verbose_name="Name")
     staff_id = models.CharField(max_length=20, null=True, blank=True, verbose_name="कर्मचारी संकेत नं.")
@@ -22,7 +23,7 @@ class Staff(models.Model):
     officename_nepali = models.ForeignKey(Office, on_delete=models.CASCADE, verbose_name="कार्यालय")
     dob = models.CharField(max_length=15, verbose_name="जन्म मिति")
     citizenship_no = models.CharField(max_length=25, verbose_name="नागरिकता नं.")
-    citizenship_dispatcheddate = models.DateField(verbose_name="जारी मिति")
+    citizenship_dispatcheddate = models.CharField(max_length=15, verbose_name="जारी मिति")
     citizenship_dispatcheddistrict = models.CharField(max_length=50, verbose_name="जारी जिल्ला")
     grandfather_name = models.CharField(max_length=150, verbose_name="बाजे / ससुराको नाम")
     father_name = models.CharField(max_length=150, verbose_name="बाबुको नाम")
@@ -33,18 +34,20 @@ class Staff(models.Model):
     permanentaddr_district = models.CharField(max_length=150, verbose_name="जिल्ला")
     permanentaddr_locallevel = models.CharField(max_length=150, verbose_name="स्थानीय तह")
     permanentaddr_localleveltype = models.ForeignKey(LocalLevelType, on_delete=models.CASCADE, related_name='permanentaddr_localleveltype', verbose_name="स्थानीय तह प्रकार")
-    permanentaddr_wardno = models.CharField(max_length=2, verbose_name="वडा नं.")
+    permanentaddr_wardno = models.CharField(max_length=2, verbose_name="वडा नं.", default='2')
     temporaryaddr_province = models.ForeignKey(Province, on_delete=models.CASCADE, related_name='temporaryaddr_province', verbose_name="प्रदेश")
     temporaryaddr_district = models.CharField(max_length=150, verbose_name="जिल्ला")
     temporaryaddr_locallevel = models.CharField(max_length=150, verbose_name="स्थानीय तह")
     temporaryaddr_localleveltype = models.ForeignKey(LocalLevelType, on_delete=models.CASCADE, related_name='temporaryaddr_localleveltype', verbose_name="स्थानीय तह प्रकार")
-    temporaryaddr_wardno = models.CharField(max_length=2, verbose_name="वडा नं.")
-
+    temporaryaddr_wardno = models.CharField(max_length=2, verbose_name="वडा नं.", default='2')
     created_date = models.DateTimeField(default=timezone.now)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None, related_name='created_by')
+    # staff_status = models.BooleanField(default=True, null=True, verbose_name="स्थिति")
+    modified_date = models.DateTimeField(default=timezone.now)
+    modified_by = models.ForeignKey(User, on_delete=models.CASCADE, default='1', null=True, related_name='modified_by')
 
     def __str__(self):
         return self.staffname_nepali
 
-    def get_absolute_url(self):
-        return reverse('staff-list')
+    # def get_absolute_url(self):
+    #         return reverse('staff-list')

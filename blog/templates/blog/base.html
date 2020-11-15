@@ -101,10 +101,11 @@
             <!-- ---------------------------------------------------------------------------------------------------
                     Show Nav Bar if the Logged in User is a SuperUser Else Only show Add Staff Field
              ------------------------------------------------------------------------------------------------------->
-            {% if request.user.is_superuser %}
+
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
+                    {% if request.user.is_superuser %}
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item has-treeview">
@@ -188,17 +189,6 @@
                             </li>
                         </ul>
                     </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a href="{% url 'staff-create' %}" class="nav-link">
-                            <i class="nav-icon fas fa-user"></i>
-                            <p>
-                                कर्मचारी
-                                <!--                <span class="right badge badge-danger">New</span>-->
-                            </p>
-                        </a>
-                    </li>
-                    {% if request.user.is_superuser %}
                     <li class="nav-item">
                         <a href="{% url 'staff-list' %}" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
@@ -209,6 +199,12 @@
                         </a>
                     </li>
                     {% endif %}
+                    <li class="nav-item">
+                        <a href="{% url 'staff-post' username=user %}" class="nav-link">
+                            <p class="text-align:center"> <i class="nav-icon fas fa-user"></i> विवरण
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
