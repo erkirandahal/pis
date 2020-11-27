@@ -61,5 +61,5 @@ class StaffFiles(models.Model):
     staffName = models.OneToOneField(Staff, on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None, related_name='created_by_stafffiles')
-    modified_date = models.DateTimeField(default=timezone.now)
-    modified_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='modified_by_stafffiles')
+    # modified_date = models.DateTimeField(default=timezone.now)
+    # modified_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='modified_by_stafffiles')

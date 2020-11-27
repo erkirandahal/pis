@@ -5,6 +5,9 @@
       <div class="d-flex justify-content-between">
         <div><h6 class="text-center alert alert-info">कर्मचारी विवरण</h6></div>
         <div>
+            <a href="{% url 'export-excel' %}" class="btn btn-primary btn-bg">
+                  <i class="fas fa-plus"></i> Export Excel
+            </a>
             <a href="{% url 'staff-create' %}" class="btn btn-info btn-bg">
                   <i class="fas fa-plus"></i> नयाँ थप्ने
             </a>
@@ -32,7 +35,9 @@
             <td>{{ staff.designation_nepali }}</td>
             <td>{{ staff.officename_nepali }}</td>
             <td>{{ staff.contact_no }}</td>
-            <td>last</td>
+            <td><a href="{% url 'staff-files-create' %}">
+                  <i class="fas fa-plus"></i> कागजात थप्ने
+            </a></td>
             <td>
                 {% if staff.author == user or staff.created_by == user and request.user.is_not_superuser %}
                 <a href="{% url 'staff-update' staff.id %}" name="generaluser" id="generaluser" class="btn btn-info btn-xs">

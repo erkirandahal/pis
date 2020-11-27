@@ -21,5 +21,4 @@ class StaffCreateForm(forms.ModelForm):
 class StaffFileCreateForm(forms.ModelForm):
     class Meta:
         model = StaffFiles
-        fields = ['citizenshipStaffFile', 'appointmentStaffFile',
-            ]
+        fields = ['citizenshipStaffFile', 'appointmentStaffFile',]

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django import forms
@@ -16,6 +17,8 @@ from django.views.generic import (
 )
 from officedata.views import UserAccessMixin
 from django.urls import reverse_lazy,reverse
+import xlwt
+import datetime
 
 class StaffCreateView(LoginRequiredMixin, CreateView):
     form_class = StaffCreateForm
@@ -143,3 +146,43 @@ class StaffFilesUploadView(LoginRequiredMixin, CreateView):
             form.instance.author = self.request.user
             form.instance.created_by = self.request.user
         return super().form_valid(form)
+
+#export Staff Data in Excel
+def export_excel(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filenname=StaffData' + str(datetime.datetime.now())+'.xlsx'
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('StaffData')
+    row_num = 0
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['कर्मचारीको नाम', 'कर्मचारी संकेत नं.',
+               'नियुक्ति मिति', 'कार्यालय प्रवेश मीति',
+               'कर्मचारी किसिम', 'सेवा समूह', 'पद', 'शाखा',
+               'कार्यालय किसिम', 'कार्यालयको नाम',
+               'जन्म मिति', 'नागरिकता नं.', 'जारी मिति', 'जारी जिल्ला',
+               'बाजेको नाम', 'बाबुको नाम', 'आमाको नाम',
+               'सम्पर्क नं.', 'इमेल',
+               ]
+    for col_num in range (len(columns)):
+        ws.write(row_num,col_num,columns[col_num], font_style)
+
+    font_style = xlwt.XFStyle()
+    rows = Staff.objects.filter(created_by=request.user).values_list(
+        'staffname_nepali', 'staff_id',
+        'appointment_date', 'officeentry_date',
+        'employeetype', 'servicegroup_nepali', 'designation_nepali', 'Sectiontype_nepali',
+        'officetype_nepali', 'officename_nepali',
+        'dob', 'citizenship_no', 'citizenship_dispatcheddate', 'citizenship_dispatcheddistrict',
+        'grandfather_name', 'father_name', 'mother_name',
+        'contact_no', 'email',
+    )
+
+    for row in rows:
+        row_num += 1
+
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, str(row[col_num]), font_style)
+    wb.save(response)
+    return response
