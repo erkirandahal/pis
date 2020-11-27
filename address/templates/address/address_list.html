@@ -1,16 +1,17 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="col-md-6">
-      <div class="d-flex justify-content-between">
-        <div><h6 class="text-center alert alert-info">प्रदेश विवरण</h6></div>
-        <div>
-            <a href="{% url 'designation-create' %}" class="btn btn-info btn-bg">
-                  <i class="fas fa-plus"></i> नयाँ थप्ने
-            </a>
+<div class="row container">
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between">
+            <div><h6 class="text-center alert alert-info">प्रदेश</h6></div>
+            <div>
+                <a href="{% url 'province-create' %}" class="btn btn-info btn-bg">
+                    <i class="fas fa-plus"></i> नयाँ थप्ने
+                </a>
+            </div>
         </div>
-    </div>
-    <table class="table table-hover">
+        <table class="table table-hover">
         <thead>
         <tr>
             <th scope="col">क्र.स.</th>
@@ -23,13 +24,13 @@
         {% for province in province %}
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
-            <td><a href="#">{{ province.provincename_nepali }}</a></td>
-            <td><a href="">{{ province.provincename_english }}</a></td>
+            <td>{{ province.provincename_nepali }}</td>
+            <td>{{ province.provincename_english }}</td>
             <td>
-                <a href="#" class="btn btn-info btn-xs">
+                <a href="{% url 'province-update' province.id %}" class="btn btn-info btn-xs">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="#" class="btn btn-danger btn-xs">
+                <a href="{% url 'province-delete' province.id %}" class="btn btn-danger btn-xs">
                     <i class="fas fa-trash"></i>
                 </a>
             </td>
@@ -37,31 +38,32 @@
         {% endfor %}
         </tbody>
     </table>
-</div>
-<div class="col-md-6">
-      <div class="d-flex justify-content-between">
-        <div><h6 class="text-center alert alert-info">प्रदेश विवरण</h6></div>
-        <div>
-            <a href="{% url 'designation-create' %}" class="btn btn-info btn-bg">
-                  <i class="fas fa-plus"></i> नयाँ थप्ने
-            </a>
-        </div>
     </div>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">क्र.स.</th>
-            <th scope="col">प्रदेश विवरण</th>
-            <th scope="col">Province Detail</th>
-            <th scope="col">एक्सन</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for local in local %}
+<!---------------------------------------------------------------------------------------------------------------------
+                            Second Div (Table)  Starts from here
+---------------------------------------------------------------------------------------------------------------------->
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between">
+            <div><h6 class="text-center alert alert-info">स्थानीय तह किसिम</h6></div>
+            <div>
+                <a href="{% url 'localleveltype-create' %}" class="btn btn-info btn-bg">
+                    <i class="fas fa-plus"></i> नयाँ थप्ने
+                </a>
+            </div>
+        </div>
+        <table class="table table-hover border">
+            <thead>
+            <tr>
+                <th scope="col">क्र.स.</th>
+                <th scope="col">स्थानीय तह किसिम</th>
+                <th scope="col">एक्सन</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for localleveltype in localleveltype_list %}
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
-            <td><a href="#">{{ local.localleveltypename_nepali }}</a></td>
-            <td><a href="">{{ local.localleveltype_english }}</a></td>
+            <td>{{ localleveltype.localleveltypename_nepali }}</td>
             <td>
                 <a href="#" class="btn btn-info btn-xs">
                     <i class="fas fa-edit"></i>
@@ -73,7 +75,8 @@
         </tr>
         {% endfor %}
         </tbody>
-    </table>
+        </table>
+    </div>
+
 </div>
-<script>
 {% endblock content %}

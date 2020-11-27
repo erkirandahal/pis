@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>This is LLT List View</h1>
-</body>
-</html>
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-md-6">
+      <div class="d-flex justify-content-between">
+        <div><h6 class="text-center alert alert-info">स्थानीय तह प्रकार</h6></div>
+        <div>
+            <a href="{% url 'localleveltype-create' %}" class="btn btn-info btn-bg">
+                  <i class="fas fa-plus"></i> नयाँ थप्ने
+            </a>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">क्र.स.</th>
+            <th scope="col">स्थानीय तह प्रकार</th>
+            <th scope="col">Local Level Type</th>
+            <th scope="col">एक्सन</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for localleveltype in localleveltype_list %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ localleveltype.localleveltypename_nepali }}</td>
+            <td>{{ localleveltype.localleveltypename_english }}</td>
+            <td>
+                <a href="#" class="btn btn-info btn-xs">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'localleveltype-delete' localleveltype.id %}" class="btn btn-danger btn-xs">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+{% endblock content %}

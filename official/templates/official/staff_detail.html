@@ -1,0 +1,158 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PIS</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'blog/plugins/fontawesome-free/css/all.min.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{% static 'blog/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'blog/dist/css/adminlte.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/staffdetailprint.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    {% if title %}
+    <title>Django Blog - {{ title }} </title>
+    {% else %}
+    <title>Django Blog </title>
+    {% endif %}
+    <style>
+.table {
+    border-top: double;
+    border-bottom: double;
+    border-right: double;
+    border-left: double;
+}
+thead, tbody, tfoot, tr, td {
+    border-top: solid;
+    border-bottom: solid
+}
+
+
+    </style>
+</head>
+<body>
+<!-- Site wrapper -->
+<div class="">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="container-fluid">
+        <div class="row" style="border:1px solid black">
+            <div class="page-title col-md-12">
+                <!--                <div class="d-flex justify-content-between">-->
+                <!--            <div><h6 class="text-center alert alert-info">सेवा समूहको विवरण</h6></div>-->
+                <!--            {% if request.user.is_superuser %}-->
+                <!--            <div>-->
+                <!--                <a href="{% url 'servicegroup-create' %}" class="btn btn-info btn-bg">-->
+                <!--                    <i class="fas fa-plus"></i> नयाँ थप्ने-->
+                <!--                </a>-->
+                <!--            </div>-->
+                <!--            {% endif %}-->
+                <!--        </div>-->
+                <div class="print-paper-heading">
+                    <legend class="border-bottom mb-1 text-center"
+                            style="font-size:32px; font-weight:bold; text-transform:uppercase;">कर्मचारी विवरण
+                    </legend>
+                </div>
+                <div class="row" style="padding-top:10px; font-size: 22px; font-weight: bold">
+                    <div class="col">कर्मचारी संकेत नं.:- {{ object.staff_id }}</div>
+                </div>
+                <div class="photo2"></div>
+                <div class="row" style="padding-top:15px; font-size: 22px; font-weight: bold">
+                    <div class="col-4">नाम:- {{ object.staffname_nepali }}</div>
+                    <div class="col-8">Name:- {{ object.staffname_english }}</div>
+                </div>
+                <div class="row" style="padding-top:15px; font-size: 22px; font-weight: bold">
+                    <div class="col">सम्पर्क नं.:- {{ object.contact_no }}</div>
+                    <div class="col">इमेल:- {{ object.email }}</div>
+                </div>
+                <div class="row" style="padding-top:20px; font-size: 22px; font-weight: bold">
+                    <div class="col-4">जन्म मिति:- {{ object.dob }}</div>
+                    <div class="col-8">नागरिकता नं.:- {{ object.citizenship_no }} , {{ object.citizenship_dispatcheddate }} , {{ object.citizenship_dispatcheddistrict }}
+                    </div>
+                </div>
+                <div class="row" style="padding-top:20px; font-size: 22px; font-weight: bold">
+                    <div class="col">बाजे / ससुराको नाम:- {{ object.grandfather_name }}</div>
+                    <div class="col">बाबुको नाम:- {{ object.father_name }}</div>
+                    <div class="col">आमाको नाम:- {{ object.mother_name }}</div>
+                </div>
+                <legend class="text-center mt-5" style="font-size:22px;; font-weight:bold "><u>ठेगाना विवरण</u></legend>
+                <fieldset style="text-align:center;">
+                    <table align="center" style="width:70%;" border="2">
+                        <thead style="text-align:center;">
+                        <tr>
+                            <th scope="col">स्थायी</th>
+                            <th scope="col">अस्थायी</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr style="text-align:center">
+                            <td>प्रदेश:- {{ object.permanentaddr_province }}</td>
+                            <td>प्रदेश:- {{ object.temporaryaddr_province }}</td>
+                        </tr>
+                        <tr style="text-align:center">
+                            <td>जिल्ला:- {{ object.permanentaddr_district }}</td>
+                            <td>जिल्ला:- {{ object.temporaryaddr_district }}</td>
+                        </tr>
+                        <tr style="text-align:center">
+                            <td>स्थानीय तह:- {{ object.permanentaddr_locallevel }} {{ object.permanentaddr_localleveltype }}
+                            </td>
+                            <td>स्थानीय तह:- {{ object.temporaryaddr_locallevel }} {{ object.temporaryaddr_localleveltype }}
+                            </td>
+                        </tr>
+                        <tr style="text-align:center">
+                            <td>वडा नं.:- {{ object.permanentaddr_wardno }}</td>
+                            <td>वडा नं.:- {{ object.temporaryaddr_wardno }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <fieldset style="text-align:center;">
+                     <label class="text-center mt-2" style="font-size:22px;; font-weight:bold "><u>सेवा विवरण</u></label>
+                    <table align="center" style="width:70%;" border="2">
+
+                        <tbody>
+                        <tr style="text-align:center; font-size:18px; font-weight:bold; ">
+                            <td colspan="2">हाल कार्यरत कार्यालय:- {{ object.officename_nepali }}</td>
+
+                        </tr>
+                        <tr style="text-align:center">
+                            <td>नियुक्ति मिति:- {{ object.appointment_date }}</td>
+                            <td>कार्यलय प्रवेश मिति:- {{ object.officeentry_date }}</td>
+                        </tr>
+                        <tr style="text-align:center">
+                            <td>स्थानीय तह:- {{ object.permanentaddr_locallevel }} {{ object.permanentaddr_localleveltype }}
+                            </td>
+                            <td>स्थानीय तह:- {{ object.temporaryaddr_locallevel }} {{ object.temporaryaddr_localleveltype }}
+                            </td>
+                        </tr>
+                        <tr style="text-align:center">
+                            <td>सेवा समूह:- {{ object.servicegroup_nepali }}</td>
+                            <td>शाखा:- {{ object.Sectiontype_nepali }} पद: {{ object.designation_nepali }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                </fieldset>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+<br>
+<div class="text-center">
+    <button onclick="window.print()" class="btn btn-primary float-center" id="printPageButton">Print</button>
+</div>
+</html>

@@ -5,7 +5,7 @@
       <div class="d-flex justify-content-between">
         <div><h6 class="text-center alert alert-info">प्रदेश विवरण</h6></div>
         <div>
-            <a href="{% url 'designation-create' %}" class="btn btn-info btn-bg">
+            <a href="{% url 'province-create' %}" class="btn btn-info btn-bg">
                   <i class="fas fa-plus"></i> नयाँ थप्ने
             </a>
         </div>
@@ -23,13 +23,13 @@
         {% for province in province_list %}
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
-            <td><a href="#">{{ province.provincename_nepali }}</a></td>
-            <td><a href="">{{ province.provincename_english }}</a></td>
+            <td>{{ province.provincename_nepali }}</td>
+            <td>{{ province.provincename_english }}</td>
             <td>
-                <a href="#" class="btn btn-info btn-xs">
+                <a href="{% url 'province-update' province.id %}" class="btn btn-info btn-xs">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="#" class="btn btn-danger btn-xs">
+                <a href="{% url 'province-delete' province.id %}" class="btn btn-danger btn-xs">
                     <i class="fas fa-trash"></i>
                 </a>
             </td>

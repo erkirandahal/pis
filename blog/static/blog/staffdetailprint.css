@@ -1,0 +1,43 @@
+body {
+    background-color:red
+}
+@page
+{
+  size:A4;
+  margin: 15mm 5mm 5mm 5mm;
+}
+#print-btn
+{
+  display: none;
+  visibility: none;
+}
+@media print {
+  #printPageButton {
+    display: none;
+  }
+}
+
+.abc .bcd{
+    {display:inline;}
+}
+
+.abc #id1{
+    font-color:blue;
+}
+
+.table {
+    border-top: double;
+    border-bottom: double;
+    border-right: blank
+}
+thead, tbody, tfoot {
+    border-top: solid;
+    border-bottom: solid
+}
+.photo2{
+  border: 2px solid black;
+  float: right;
+
+  height: 140px;
+  width: 130px;
+}
